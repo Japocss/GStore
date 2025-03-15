@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GStore.Models;
 
 [Table("produto_foto")]
-    public class ProdutoFoto
+public class ProdutoFoto
 {
     [Key]
     public int Id { get; set; }

@@ -181,14 +181,14 @@ public class AppDbSeed
         List<Usuario> usuarios = new() {
             new Usuario(){
                 Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-                Email = "inadux15@gmail.com",
-                NormalizedEmail = "INADUX15@GMAIL.COM",
-                UserName = "Japocss",
-                NormalizedUserName = "JAPOCSS",
+                Email = "gallojunior@gmail.com",
+                NormalizedEmail = "GALLOJUNIOR@GMAIL.COM",
+                UserName = "GalloJunior",
+                NormalizedUserName = "GALLOJUNIOR",
                 LockoutEnabled = true,
                 EmailConfirmed = true,
-                Nome = "Gabriel Henrique da Silva de Lima",
-                DataNascimento = DateTime.Parse("06/05/2004"),
+                Nome = "José Antonio Gallo Junior",
+                DataNascimento = DateTime.Parse("05/08/1981"),
                 Foto = "/img/usuarios/ddf093a6-6cb5-4ff7-9a64-83da34aee005.png"
             }
         };
