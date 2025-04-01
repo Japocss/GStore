@@ -24,7 +24,7 @@ namespace GStore.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.TolistAsync());
+            return View(await _context.Categorias.ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -35,7 +35,7 @@ namespace GStore.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categories
+            var categoria = await _context.Categorias
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (categoria == null)
             {
@@ -55,10 +55,10 @@ namespace GStore.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForegeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,None,Foto")] Categoria categoria, IFormFile Arquivo)
         {
-            if (ModeISRate.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(categoria);
                 await _context.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace GStore.Controllers
                 if (Arquivo != null)
                 {
                     string filename = categoria.Id + Path.GetExtension(Arquivo.FileName);
-                    string caminho = Path.Combine(_host.WebRootPath, "img\categoryias");
+                    string caminho = Path.Combine(_host.WebRootPath, "\\img\\categorias\\");
                     string novoArquivo = Path.Combine(caminho, filename);
                     using (var stream = new FileStream(novoArquivo, FileMode.Create))
                     {
@@ -75,7 +75,7 @@ namespace GStore.Controllers
                     categoria.Foto = "\\img\\categorias\\" + filename;
                     await _context.SaveChangesAsync();
                 }
-                TempData["Success"] = "Categoria Cadastrada com Sucesso!");
+                TempData["Success"] = ("Categoria Cadastrada com Sucesso!");
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -88,7 +88,7 @@ namespace GStore.Controllers
             {
                 return NotFound();
             }
-            var categoria = await _context.Categories.FindAsync(id);
+            var categoria = await _context.Categorias.FindAsync(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -149,7 +149,7 @@ namespace GStore.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categories
+            var categoria = await _context.Categorias
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (categoria == null)
             {
@@ -161,23 +161,23 @@ namespace GStore.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidationAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var categoria = await _context.Categorias.FindAsync(id);
             if (categoria != null)
             {
-                _context.Categories.Remove(categoria);
+                _context.Categorias.Remove(categoria);
             }
 
             await _context.SaveChangesAsync();
-            TempData["Success"] = "Categories Excluded com Success!");
+            TempData["Success"] = ("Categories Excluded com Success!");
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategorialExists(int id)
+        private bool CategoriaExists(int id)
         {
-            return _context.Categories.Any(e => e.Id == id);
+            return _context.Categorias.Any(e => e.Id == id);
         }
     }
 }
