@@ -16,8 +16,8 @@
                     <form asp-action="Login" method="post">
                         <div asp-validation-summary="ModelOnly" hidden></div>
                         <input type="hidden" asp-for="UrlRetorno">
-                        <div class="form-floating mb-3">
-                            <input class="form-floating mb-3">
+                        <div class="form-floating mb-3">            
+                            <input class="form-control" asp-for="Email" />
                             <label asp-for="Email"></label>
                             <span asp-validation-for="Email" class="text-danger text-sm"></span>
                         </div>
